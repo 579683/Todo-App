@@ -3,6 +3,7 @@ import Modal from './Modal'
 import TodoForm from './TodoForm'
 
 function AddNewTodo() {
+    
     const [showModal, setShowModal] = useState(false)
     const [text, setText] = useState("")
     const [day, setDay] = useState(new Date())
