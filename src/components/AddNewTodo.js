@@ -1,14 +1,23 @@
-import React, {useState} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
+import {TodoContext} from '../context'
 import Modal from './Modal'
 import TodoForm from './TodoForm'
 
 function AddNewTodo() {
     
+    // CONTEXT
+    const {selectedProject} = useContext(TodoContext)
+
+    // STATE
     const [showModal, setShowModal] = useState(false)
     const [text, setText] = useState("")
     const [day, setDay] = useState(new Date())
     const [time, setTime] = useState(new Date())
+    const [todoProject, setTodoProject] = useState(selectedProject)
 
+    useEffect(() => {
+        setTodoProject(selectedProject)
+    }, [selectedProject])
 
     const projects = [
         {id : 1, name : "personal", numOfTodos : 0},
@@ -28,7 +37,7 @@ function AddNewTodo() {
                 </button>
             </div>
             <Modal showModal={showModal} setShowModal={setShowModal}>
-                <TodoForm handleSubmit={handleSubmit} heading="Add new to do!" text={text} setText={setText} day={day} setDay={setDay} time={time} setTime={setTime} projects={projects} showButton={true} setShowModal={setShowModal}/>
+                <TodoForm handleSubmit={handleSubmit} heading="Add new to do!" text={text} setText={setText} day={day} setDay={setDay} time={time} setTime={setTime} todoProject={todoProject} setTodoProject={setTodoProject} projects={projects} showButton={true} setShowModal={setShowModal}/>
             </Modal>
         </div>
     )

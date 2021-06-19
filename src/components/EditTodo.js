@@ -3,10 +3,10 @@ import TodoForm from './TodoForm'
 
 function EditTodo() {
 
-    const [showModal, setShowModal] = useState(false)
     const [text, setText] = useState()
     const [day, setDay] = useState()
     const [time, setTime] = useState()
+    const [todoProject, setTodoProject] = useState()
 
 
     const projects = [
@@ -25,7 +25,7 @@ function EditTodo() {
                 Edit todo
             </div>
             <div className="container">
-                <TodoForm handleSubmit={handleSubmit}  text={text} setText={setText} day={day} setDay={setDay} time={time} setTime={setTime} projects={projects} />
+                <TodoForm handleSubmit={handleSubmit}  text={text} setText={setText} day={day} setDay={setDay} time={time} setTime={setTime} todoProject={todoProject} setTodoProject={setTodoProject} projects={projects} />
             </div>
         </div>
     )
