@@ -19,7 +19,7 @@ export function useTodos() {
                                 setTodos(data)
                             })
         return () => unsubscribe() 
-    })
+    }, [])
 
     return todos
 }
@@ -50,7 +50,7 @@ export function useProjects(todos) {
                                 setProjects(data)
                             })
         return () => unsubscribe() 
-    })
+    }, [])
 
     return projects
 }
