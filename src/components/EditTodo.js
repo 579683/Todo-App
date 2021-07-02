@@ -3,6 +3,7 @@ import TodoForm from './TodoForm'
 
 function EditTodo() {
 
+    // STATES
     const [text, setText] = useState()
     const [day, setDay] = useState()
     const [time, setTime] = useState()
@@ -15,6 +16,7 @@ function EditTodo() {
         {id : 3, name : "other", numOfTodos : 2},
     ]
 
+    // Function
     function handleSubmit(e) {
         
     }

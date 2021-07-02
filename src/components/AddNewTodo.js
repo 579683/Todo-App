@@ -1,33 +1,55 @@
+import moment from 'moment'
+import randomColor from 'randomcolor'
 import React, {useState, useContext, useEffect} from 'react'
 import {TodoContext} from '../context'
 import Modal from './Modal'
 import TodoForm from './TodoForm'
+import { calendarItems } from '../constants'
+import firebase from '../firebase'
 
 function AddNewTodo() {
     
     // CONTEXT
-    const {selectedProject} = useContext(TodoContext)
+    const {projects, selectedProject} = useContext(TodoContext)
 
-    // STATE
+    // STATES
     const [showModal, setShowModal] = useState(false)
     const [text, setText] = useState("")
     const [day, setDay] = useState(new Date())
     const [time, setTime] = useState(new Date())
     const [todoProject, setTodoProject] = useState(selectedProject)
 
+    // Function for adding a new todo
+    function handleSubmit(e){
+        e.preventDefault()
+
+        if( text && !calendarItems.includes(todoProject)){
+            firebase
+                .firestore()
+                .collection('todos')
+                .add(
+                    {
+                        text : text,
+                        date : moment(day).format('MM/DD/YYYY'),
+                        day : moment(day).format('d'),
+                        time : moment(time).format('hh:mm A'),
+                        checked : false,
+                        color : randomColor(),
+                        projectName : todoProject
+                    }
+                )
+
+            setShowModal(false)
+            setText('')
+            setDay(new Date())
+            setTime(new Date())
+        }
+    }
+
+    // HOOK
     useEffect(() => {
         setTodoProject(selectedProject)
     }, [selectedProject])
-
-    const projects = [
-        {id : 1, name : "personal", numOfTodos : 0},
-        {id : 2, name : "work", numOfTodos : 1},
-        {id : 3, name : "other", numOfTodos : 2},
-    ]
-
-    function handleSubmit(e) {
-
-    }
 
     return (
         <div className='AddNewTodo'>
@@ -37,7 +59,7 @@ function AddNewTodo() {
                 </button>
             </div>
             <Modal showModal={showModal} setShowModal={setShowModal}>
-                <TodoForm handleSubmit={handleSubmit} heading="Add new to do!" text={text} setText={setText} day={day} setDay={setDay} time={time} setTime={setTime} todoProject={todoProject} setTodoProject={setTodoProject} projects={projects} showButton={true} setShowModal={setShowModal}/>
+                <TodoForm handleSubmit={handleSubmit} heading="Add new to do!" text={text} setText={setText} day={day} setDay={setDay} time={time} setTime={setTime} todoProject={todoProject} setTodoProject={setTodoProject} projects={projects} showButtons={true} setShowModal={setShowModal}/>
             </Modal>
         </div>
     )
