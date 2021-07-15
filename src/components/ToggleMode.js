@@ -2,8 +2,7 @@ import React, {useState} from 'react'
 import Toggle from 'react-toggle'
 import "react-toggle/style.css";
 
-
-function Sidebar({children}) {
+function ToggleMode() {
 
     const [darkTheme, setDarkTheme] = useState(false)
 
@@ -12,9 +11,7 @@ function Sidebar({children}) {
     }
 
     return (
-        <div className='Sidebar' style={{backgroundColor: darkTheme ? "black" : "white", color: darkTheme ? "white" : "black"}}>
-            {children}
-            <br></br>
+        <div className="ToggleMode">
             <div style={{textAlign: "center"}}>
                 <Toggle
                     defaultChecked={false}
@@ -29,4 +26,4 @@ function Sidebar({children}) {
     )
 }
 
-export default Sidebar 
+export default ToggleMode

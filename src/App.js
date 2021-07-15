@@ -3,6 +3,7 @@ import Sidebar from './components/Sidebar'
 import Main from './components/Main'
 import User from './components/User'
 import AddNewTodo from './components/AddNewTodo'
+import ToggleMode from './components/ToggleMode';
 import Calender from './components/Calendar'
 import Projects from './components/Projects'
 import Todos from './components/Todos'
@@ -18,6 +19,7 @@ function App() {
       <Sidebar>
         <User />
         <AddNewTodo />
+        {/* <ToggleMode /> */}
         <Calender />
         <Projects />
       </Sidebar>

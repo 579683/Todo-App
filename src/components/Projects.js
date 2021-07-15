@@ -4,6 +4,7 @@ import {TodoContext} from '../context';
 import AddNewProject from './AddNewProject'
 import Project from './Project'
 
+// Displays the projects on the sidebar
 function Projects() {
 
     const [showMenu, setShowMenu] = useState(true);

@@ -3,6 +3,7 @@ import { CalendarDate, CaretUp } from 'react-bootstrap-icons'
 import { calendarItems } from '../constants/index'
 import {TodoContext} from '../context'
 
+// Displays the days in the sidebar
 function Calendar() {
 
     // CONTEXT

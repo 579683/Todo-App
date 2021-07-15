@@ -1,9 +1,57 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
+import moment from 'moment'
+import Todo from './Todo'
 
-function Next7Days() {
+function Next7Days({todos}) {
+    const [weekTodos, setWeekTodos] = useState([])
+
+    // Used to sort/rearrange the todos after each render
+    useEffect(() => { 
+        const days = ['0', '1', '2', '3', '4', '5', '6']
+
+        const sortedTodosByDay = days.map( day => {
+            return {
+                todos: todos.filter(todo => todo.day === day),
+                number: day
+            } 
+        })
+
+        const today = parseInt(moment().format('d'))
+        const arrangeDays = sortedTodosByDay.slice(today).concat(sortedTodosByDay.slice(0, today))
+
+        setWeekTodos(arrangeDays)
+    }, [todos])
+
     return (
         <div className='Next7Days'>
-            Next7Days
+            {
+                weekTodos.map(day => 
+                    <div key={day.number}>
+                        <div className="day">
+
+                            {/* Display day */}
+                            <div className="name">
+                                {moment(day.number, 'd').format('dddd')}
+                                {day.number === moment().format('d') && ' (Today)'}
+                            </div>
+
+                            {/* Display the length of todos */}
+                            <div className="total-todos">
+                                ({day.todos.length})
+                            </div>
+                        </div>
+
+                        {/* Display the todos */}
+                        <div className="todos">
+                            {
+                                day.todos.map(todo => 
+                                    <Todo key={todo.id} todo={todo} />
+                                )
+                            }
+                        </div>
+                    </div>
+                )
+            }
         </div>
     )
 }

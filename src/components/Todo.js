@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {ArrowClockwise, CheckCircleFill, Circle, Trash} from 'react-bootstrap-icons'
 
 
+// Shows the todos on the list 
 function Todo({todo}) {
     const [hover, setHover] = useState(false)
 
