@@ -4,10 +4,13 @@ import Next7Days from './Next7Days'
 import {TodoContext} from '../context'
 
 function Todos() {
-    const { todos, selectedProject } = useContext(TodoContext) 
+    const { todos, selectedProject, darkTheme,  } = useContext(TodoContext) 
+
 
     return (
-        <div className='Todos'>
+
+        // Displays the calendar and the different options under 'today', 'next 7 days' and 'all days'
+        <div className='Todos' style={{backgroundColor: darkTheme ? "#2F4F4F" : "white", color: darkTheme ? "white" : "black"}}>
             <div className="selected-project">
                 {selectedProject}
             </div>

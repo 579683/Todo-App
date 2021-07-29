@@ -1,14 +1,17 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {Bell, CalendarDay, Clock, Palette, X} from 'react-bootstrap-icons'
 import { DatePicker, TimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import {TodoContext} from '../context';
 
 function TodoForm({handleSubmit, heading = false, text, setText, day, setDay, time, setTime, todoProject, setTodoProject, projects, showButtons = false, setShowModal = false }) {
 
-
+    const { darkTheme } = useContext(TodoContext)
     return (
+
+        // Displays the form for adding a new todo after clicking the '+ New todo'
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <form onSubmit={handleSubmit} className="TodoForm">
+        <form onSubmit={handleSubmit} className="TodoForm" style={{backgroundColor: darkTheme ? "#2F4F4F" : "white", color: darkTheme ? "white" : "black"}}>
             <div className="text">
                 {
                     heading &&

@@ -31,7 +31,7 @@
 .Main {
     width: 100%;
     height: 100%;
-    background-image: url('./images/Mountain.jpg');
+    /* background-image: url('./images/Mountain.jpg'); */
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
@@ -45,7 +45,8 @@
     align-items: center;
     justify-content: space-around;
     padding: 1rem;
-    border: 1px solid #ebebeb;
+    border-bottom: 1px solid #ebebeb;
+    /* border: 1px solid #ebebeb; */
 }
 
 .User .logo img {
@@ -453,6 +454,7 @@
     border-radius: 4px;
     opacity: 0.9;
     padding: 0 0.5rem 0.5rem 0.5rem;
+    overflow-y: auto;
 }
 
 .Todos .selected-project {

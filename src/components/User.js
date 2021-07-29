@@ -1,9 +1,12 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import {TodoContext} from '../context'
 import logo from "../images/react.jpg"
 
 function User() {
+
+    const { darkTheme } = useContext(TodoContext)
     return (
-        <div className='User'>
+        <div className='User'> {/*  style={{border: darkTheme ? "black" : "black"}} */}
             {/* <div className="Logo">
                 <img src={logo} alt="logo" />
             </div> */}

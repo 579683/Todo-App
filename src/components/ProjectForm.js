@@ -1,9 +1,13 @@
-import React from 'react'
+import React, {useContext} from 'react'
+import {TodoContext} from '../context'
 
 function ProjectForm({handleSubmit, heading, value, setValue, setShowModal, confirmButtonText}) {
 
+    const { darkTheme } = useContext(TodoContext)
     return (
-        <form onSubmit={handleSubmit} className="ProjectForm">
+
+        // Displays the form for adding a new project after clicking '+' under projects
+        <form onSubmit={handleSubmit} className="ProjectForm" style={{backgroundColor: darkTheme ? "#2F4F4F" : "white", color: darkTheme ? "white" : "black"}}>
             <h3>{heading}</h3>
 
             {/* Input new project */}

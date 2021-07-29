@@ -15,12 +15,16 @@ function Projects() {
     const {projects} = useContext(TodoContext)
     
     return (
+
+        // Displays every projects under title "projects"
         <div className="Projects">
             <div className="header">
                 <div className="title">
                     <Palette size="18"/>
                     <p>Projects</p>
                 </div>
+
+                {/* Display three buttons: a pen, a plus sign, and a triangle */}
                 <div className="btns">
                     {
                         showMenu && projects.length > 0 && 
@@ -35,6 +39,8 @@ function Projects() {
                     </span>
                 </div>
             </div>
+            
+            {/* Displays the different projects listed */}
             <div className="items">
                 {
                     projects.map(project => 

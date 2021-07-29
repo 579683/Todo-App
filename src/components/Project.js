@@ -8,7 +8,7 @@ import firebase from '../firebase'
 function Project({project, edit}) {
 
     // CONTEXT
-    const {defaultProject, selectedProject, setSelectedProject} = useContext(TodoContext)
+    const {defaultProject, selectedProject, setSelectedProject, darkTheme} = useContext(TodoContext)
     // STATE
     const [showModal, setShowModal] = useState(false)
 
@@ -41,9 +41,13 @@ function Project({project, edit}) {
 
     return (
         <div className="Project">
+
+            {/* Display the name of the selected project, when clicked  */}
            <div className="name" onClick={() => setSelectedProject(project.name)}>
                {project.name}
            </div> 
+
+            {/* Display the options to either edit or delete a project, when the pen is clicked  */}
            <div className="btns">
                {
                 edit ? 
@@ -57,11 +61,14 @@ function Project({project, edit}) {
                 </div>  
                : 
                project.numOfTodos === 0 ? "" : 
-               <div className="total-todos">
+               <div className="total-todos" style={{background: darkTheme ? "#ebebeb" : "#ebebeb", color: darkTheme ? "black" : "black"}}> 
                    {project.numOfTodos}
                </div>
             }
+
            </div>
+
+           {/* Display the modal */}
            <Modal showModal={showModal} setShowModal={setShowModal}>
                 <RenameProject project={project} setShowModal={setShowModal} />
            </Modal>

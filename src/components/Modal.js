@@ -1,6 +1,8 @@
 import React, {useRef} from 'react'
 
 function Modal({children, showModal, setShowModal}) {
+
+    // REF: Return a object with a property called 'current'
     const modalRef = useRef()
 
     const closeModal = (e) => {

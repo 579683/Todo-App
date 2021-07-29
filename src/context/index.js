@@ -1,17 +1,22 @@
 import React, {createContext, useState} from 'react'
-import { useTodos, useProjects, useFilterTodos } from '../hooks'
+import { useTodos, useProjects, useFilterTodos, useProjectsWithStats } from '../hooks'
 
 const TodoContext = createContext()
 
 function TodoContextProvider({children}) {
 
+    // HOOKS
     const defaultProject = 'today'
     const [selectedProject, setSelectedProject] = useState(defaultProject)
+    const [selectedTodo, setSelectedTodo] = useState(undefined)
+    const [darkTheme, setDarkTheme] = useState(false)
 
-
+    // CUSTOM HOOKS
     const todos = useTodos()
     const projects = useProjects(todos)
+    const projectsWithStats = useProjectsWithStats(projects, todos)
     const filteredTodos = useFilterTodos(todos, selectedProject)
+
     return (
         <TodoContext.Provider 
             value={{
@@ -19,7 +24,11 @@ function TodoContextProvider({children}) {
                         selectedProject,
                         setSelectedProject,
                         todos : filteredTodos,
-                        projects
+                        projects : projectsWithStats,
+                        selectedTodo,
+                        setSelectedTodo,
+                        darkTheme,
+                        setDarkTheme
                    }
             }>
             {children}
