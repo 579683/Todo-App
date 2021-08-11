@@ -1,3 +1,6 @@
+import React, { Component } from "react";
+import { render } from "react-dom";
+import ParticlesBg from "particles-bg";
 import './App.css';
 import Sidebar from './components/Sidebar'
 import Main from './components/Main'
@@ -12,21 +15,31 @@ import EditTodo from './components/EditTodo'
 
 
 
-function App() {
-  return (
-    <div className="App">
-      <Sidebar>
-        <User />
-        <AddNewTodo />
-        <Calender />
-        <Projects />
-      </Sidebar>
-      <Main>
-        <Todos />
-        <EditTodo />
-      </Main>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      name: "React"
+    };
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Sidebar>
+          <User />
+          <AddNewTodo />
+          <Calender />
+          <Projects />
+        </Sidebar>
+        <Main>
+          <Todos />
+          <EditTodo />
+          {/* <ParticlesBg type="random" bg={true}/> */}
+        </Main>
+      </div>
+    );
+  }
 }
 
 export default App;

@@ -3,6 +3,7 @@ import {Palette, PencilFill, CaretUp} from 'react-bootstrap-icons'
 import {TodoContext} from '../context';
 import AddNewProject from './AddNewProject'
 import Project from './Project'
+import { useSpring, animated } from 'react-spring'
 
 // Displays the projects on the sidebar
 function Projects() {
@@ -14,6 +15,17 @@ function Projects() {
     // CONTEXT
     const {projects} = useContext(TodoContext)
     
+    // ANIMATION
+    const spin = useSpring({
+        transform: showMenu ? 'rotate(0deg)' : 'rotate(180deg)',
+        config: { friction: 10 }
+    })
+    
+    const menuAnimation = useSpring({
+        display: showMenu ? 'block' : 'none',
+        lineHeight: showMenu ? 1.2 : 0
+    })
+
     return (
 
         // Displays every projects under title "projects"
@@ -34,20 +46,20 @@ function Projects() {
                     }
             
                     <AddNewProject />
-                    <span className="arrow">
+                    <animated.span className="arrow" onClick={() => setShowMenu(!showMenu)} style={spin}>
                         <CaretUp size="20" />
-                    </span>
+                    </animated.span>
                 </div>
             </div>
             
             {/* Displays the different projects listed */}
-            <div className="items">
+            <animated.div style={menuAnimation} className="items">
                 {
                     projects.map(project => 
                         <Project project={project} key={project.id} edit={edit}/>    
                     )
                 }
-            </div>
+            </animated.div>
         </div>
     )
 }

@@ -10,6 +10,7 @@ function TodoContextProvider({children}) {
     const [selectedProject, setSelectedProject] = useState(defaultProject)
     const [selectedTodo, setSelectedTodo] = useState(undefined)
     const [darkTheme, setDarkTheme] = useState(false)
+    const [click, setClick] = useState(false)
 
     // CUSTOM HOOKS
     const todos = useTodos()
@@ -28,7 +29,9 @@ function TodoContextProvider({children}) {
                         selectedTodo,
                         setSelectedTodo,
                         darkTheme,
-                        setDarkTheme
+                        setDarkTheme,
+                        click,
+                        setClick
                    }
             }>
             {children}

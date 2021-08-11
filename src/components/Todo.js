@@ -3,6 +3,7 @@ import {ArrowClockwise, CheckCircleFill, Circle, Trash} from 'react-bootstrap-ic
 import firebase from '../firebase'
 import moment from 'moment'
 import {TodoContext} from '../context'
+import { useTransition, useSpring, animated } from 'react-spring'
 
 // Shows the todos on the list 
 function Todo({todo}) {
@@ -22,6 +23,18 @@ function Todo({todo}) {
             setSelectedTodo(undefined)
         }
     }
+
+    //ANIMATION
+    const fadeIn = useSpring({
+        from: { marginTop : '-12px', opacity: 0 },
+        to: { marginTop: '0px', opacity: 1 }
+    })
+
+    const checkTransitions = useTransition(todo.checked, {
+        from: { position: 'absolute', transform: 'scale(0)'},
+        enter: { transform: 'scale(1)'},
+        leave: { transform: 'scale(0)'}
+    })
 
     // Used to delete the todos 
     const deleteTodo = todo => {
@@ -67,7 +80,7 @@ function Todo({todo}) {
     return (
 
         // Displays the todos in a project, and the different options to work around them
-        <div className='Todo'>
+        <animated.div style={fadeIn} className='Todo'>
            <div 
                 className="todo-container"
                 onMouseEnter={() => setHover(true)}
@@ -80,14 +93,16 @@ function Todo({todo}) {
                    setSelectedTodo(undefined);
                }}>
                    {
-                       todo.checked ? 
-                       <span className="checked">
-                           <CheckCircleFill color="#bebebe" />
-                       </span>
-                       :
-                       <span className="unchecked">
-                           <Circle color={todo.color} />
-                       </span>
+                       checkTransitions((props, checked) => 
+                        checked ? 
+                        <animated.span style={props} className="checked">
+                            <CheckCircleFill color="#7cb342" />
+                        </animated.span>
+                        :
+                        <animated.span style={props} className="unchecked">
+                            <Circle color={todo.color} />
+                        </animated.span>
+                       )
                    }
                </div>
 
@@ -118,7 +133,7 @@ function Todo({todo}) {
                    }
                </div>
            </div>
-        </div>
+        </animated.div>
     )
 }
 
