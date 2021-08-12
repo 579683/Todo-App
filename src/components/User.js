@@ -12,7 +12,7 @@ function User() {
             </div> */}
             <div className="info">
                 <p>Todo app</p>
-                <a href="#">Logout!</a>
+                <a href="#" style={{color: darkTheme ? "#ffffff" : "#000000"}}>Logout!</a>
             </div>
         </div>
     )

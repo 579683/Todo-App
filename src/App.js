@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { render } from "react-dom";
 import ParticlesBg from "particles-bg";
-import './App.css';
+import './App.scss';
 import Sidebar from './components/Sidebar'
 import Main from './components/Main'
 import User from './components/User'
